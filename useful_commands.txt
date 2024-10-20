@@ -1,0 +1,31 @@
+ssh -i "LeverNamedKey.pem" ec2-user@44.226.152.171
+
+docker attach minecraff
+Ctrl+P, Ctrl+Q (detach)
+
+
+scp -ir "LeverNamedKey.pem" './*' ec2-user@44.226.152.171:/home/ec2-user/Minecraff/docker-compose.yaml
+
+scp -i "LeverNamedKey.pem" './run_server.sh' ec2-user@44.226.152.171:/home/ec2-user/Minecraff/run_server.sh
+
+docker exec -i minecraff rcon-cli
+
+docker exec -i minecraff mc-send-to-console say Server will restart in 1 minute
+
+sudo systemctl stop run_server.service
+
+sudo systemctl start run_server.service
+
+sudo systemctl status run_server.service
+
+
+# Install Docker compose
+
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+docker-compose version
+
+# Conversation full of related information
+# https://chat.openai.com/c/ec021fb7-f7e6-480d-b862-dabf862d44ae

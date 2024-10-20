@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  mc:
+    build: .
+    container_name: minecraff_testing
+    tty: true
+    stdin_open: true
+    # restart: "always"
+    ports:
+      - "25566:25565"
+      - "25576:25575"
+    environment:
+      SERVER_NAME: "Minecraft Through The Ages"
+      EULA: "TRUE"
+      INIT_MEMORY: "3G"
+      MAX_MEMORY: "7G"
+      GUI: "FALSE"
+      ONLINE_MODE: "TRUE"
+      MOTD: "Minecraft is so cool!!"
+      LEVEL: "world"
+      SPAWN_PROTECTION: 0
+      RCON_PASSWORD: "splorbo"
+    volumes:
+      - ./data:/data
+      - ./backups:/backups
