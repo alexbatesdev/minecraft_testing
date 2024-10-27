@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mc:
-    build: .
+    build: ./server
     container_name: minecraff_testing
     tty: true
     stdin_open: true
@@ -13,6 +13,7 @@ services:
     environment:
       SERVER_NAME: "Minecraft Through The Ages"
       EULA: "TRUE"
+      VERSION: "1.2.5"
       INIT_MEMORY: "3G"
       MAX_MEMORY: "7G"
       GUI: "FALSE"
@@ -22,5 +23,5 @@ services:
       SPAWN_PROTECTION: 0
       RCON_PASSWORD: "splorbo"
     volumes:
-      - ./data:/data
+      - ./server/data:/data
       - ./backups:/backups
