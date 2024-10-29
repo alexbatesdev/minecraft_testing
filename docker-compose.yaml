@@ -17,11 +17,17 @@ services:
       INIT_MEMORY: "3G"
       MAX_MEMORY: "7G"
       GUI: "FALSE"
-      ONLINE_MODE: "TRUE"
+      ONLINE_MODE: "FALSE"
       MOTD: "Minecraft is so cool!!"
       LEVEL: "world"
       SPAWN_PROTECTION: 0
       RCON_PASSWORD: "splorbo"
+      ENABLE_WHITELIST: "TRUE"
+      WHITELIST_FILE: "./white-list.txt"
     volumes:
       - ./server/data:/data
       - ./backups:/backups
+  discord-bot:
+    build: ./discord_bot
+    depends_on:
+      - mc

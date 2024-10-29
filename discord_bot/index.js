@@ -1,17 +1,4 @@
 require('dotenv').config();
-console.log("--------------------")
-console.log(process.env);
-console.log("--------------------")
-
-
-const { Rcon } = require('rcon-client');
-
-const CHANNEL_ID = '738985655866228797';
-const RCON_HOST = 'localhost'; // Or your server IP
-const RCON_PORT = 25576;       // Port specified in server.properties
-const RCON_PASSWORD = 'splorbo';
-
-
 
 // Require the necessary discord.js classes
 const fs = require('node:fs');
@@ -51,23 +38,8 @@ client.once(Events.ClientReady, readyClient => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
-// Connect to RCON
-async function connectRcon() {
-  const rcon = new Rcon({
-      host: RCON_HOST,
-      port: RCON_PORT,
-      password: RCON_PASSWORD
-  });
-
-  await rcon.connect();
-  console.log('Connected to Minecraft server via RCON');
-
-  const channel = await client.channels.fetch(CHANNEL_ID);
-  channel.send('Connected to Minecraft server via RCON');
-}
-
 // Log in to Discord with your client's token
-client.login(token).then(connectRcon);
+client.login(token);
 
 client.on(Events.InteractionCreate, interaction => {
   if (!interaction.isChatInputCommand()) return;
