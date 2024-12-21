@@ -19,6 +19,8 @@ module.exports = {
 
     const rcon = await getRCONconnection();
     await rcon.send(`whitelist add ${username}`);
+    await new Promise(resolve => setTimeout(resolve, 250));
+    await rcon.send('whitelist reload');
 
     await interaction.reply('Adding you to the whitelist!');
   },
